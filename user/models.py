@@ -30,7 +30,7 @@ class Job_Skills(models.Model) :
 
 
 class UserSkills(models.Model) :
-    user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING) #FOREIGN KEY OR ManyToOneField?
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE) #FOREIGN KEY OR ManyToOneField?
     skill_id = models.ManyToManyField(Skill)
     skill_profciency = models.IntegerField()
 
@@ -38,8 +38,8 @@ class UserSkills(models.Model) :
         return(self.user_id + '-' + self.skill_id)
 
 class AppliesFor(models.Model) :
-    user_id = models.OneToOneField(User, on_delete=models.DO_NOTHING)
-    job_id = models.OneToOneField(Job, on_delete=models.DO_NOTHING)
+    user_id = models.OneToOneField(User, on_delete=models.CASCADE)
+    job_id = models.OneToOneField(Job, on_delete=models.CASCADE)
     date_applied = models.DateField()
 
     def __str__ (self) :
