@@ -1,11 +1,28 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+ <!-- Masthead-->
+        <header class="masthead bg-primary text-white text-center">
+            <div class="container d-flex align-items-center flex-column">
+                <!-- Masthead Avatar Image-->
+                <img class="masthead-avatar mb-5" src=" {% static 'assets/img/avataaars.png' %}" alt="" />
+                <!-- Masthead Heading-->
+                <h2 class="masthead-heading text-uppercase mb-0">Black Cyber Recruiter</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Masthead Subheading-->
+                <p class="masthead-subheading font-weight-light mb-0">We will help bridge the job inequality gap!</p>
+            </div>
+        </header>
         <!-- Portfolio Section-->
         <section class="page-section portfolio" id="portfolio">
             <div class="container">
                 <!-- Portfolio Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Portfolio</h2>
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Recommended Jobs:</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
@@ -20,7 +37,7 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <img class="img-fluid" src="{% static 'assets/img/portfolio/cabin.png' %}" alt="" />
+                            <h4></h4>
                         </div>
                     </div>
                     <!-- Portfolio Item 2-->
@@ -38,7 +55,8 @@
                             <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                                 <div class="portfolio-item-caption-content text-center text-white"><i class="fas fa-plus fa-3x"></i></div>
                             </div>
-                            <p>Will this appear?</P>
+                            <td style="text-align: right;"><input type="submit" id="submit_matchbox" name="submit_matchbox" value="Recommend Products"></td>
+          <td>{{matchbox_results}}</td>
                         </div>
                     </div>
                     <!-- Portfolio Item 4-->
