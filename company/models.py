@@ -13,3 +13,13 @@ class Company(models.Model) :
 
     def __str__(self) :
         return (self.company_name)
+
+class Job(models.Model) :
+    #how do I bring in the companyid if I can't reference it?
+    job_name = models.CharField(max_length=50)
+    job_description = models.CharField(max_length=1000)
+    date_posted = models.DateField()
+
+    def __str_(self) :
+        return (self.job_name)
+
