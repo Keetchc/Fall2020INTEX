@@ -15,7 +15,7 @@ class Company(models.Model) :
         return (self.company_name)
 
 class Job(models.Model) :
-    #how do I bring in the companyid if I can't reference it?
+    company_id = models.ForeignKey(Company, on_delete=models.CASCADE)
     job_name = models.CharField(max_length=50)
     job_description = models.CharField(max_length=1000)
     date_posted = models.DateField()
