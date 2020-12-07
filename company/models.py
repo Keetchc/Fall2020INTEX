@@ -10,6 +10,8 @@ class Company(models.Model) :
     zip_code = models.CharField(max_length=10, blank=True)
     state = models.CharField(max_length=30, blank=True)
     country = models.CharField(max_length=30, blank=True)
+    size = models.CharField(max_length=2)
+    sector = models.CharField(max_length=2)
 
     def __str__(self) :
         return (self.company_name)
@@ -20,6 +22,6 @@ class Job(models.Model) :
     job_description = models.CharField(max_length=1000)
     date_posted = models.DateField()
 
-    def __str_(self) :
+    def __str__(self) :
         return (self.job_name)
 

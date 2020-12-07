@@ -1,12 +1,45 @@
 from django.shortcuts import render
 from django.http import request, HttpResponse
+import json
+import numpy as np
 
 # Create your views here.
 
 def indexPageView(request) :
    return render(request, 'homepages/index.html')
 
+def azure_matchbox(request) :
+   import urllib
+   data = {
+    "Inputs": {
+      "input1": {
+        "ColumnNames": ["user_id", "job_title"],
+        "Values": [[
+          #request.GET[], 
+          '55',
+          #request.GET['asin'], 
+          'Bus Driver',
+          ]]
+      }
+    }
+   }
+   body = str.encode(json.dumps(data))
+
+   url = 'https://ussouthcentral.services.azureml.net/workspaces/ba336cb92ebe429bb683ed665d93278b/services/564fd49e781247c5b3eff1cf0bd04464/execute?api-version=2.0&details=true'
+   api_key = 'WfZluhvXMTckeff1hiD83S9M62NhLITUUADiZXqt2/QfxTPQelB8lZx/61jfeva22hei9w8vVylsaeAS/RwJcA==' # Replace this with the API key for the web service
+   headers = {'Content-Type':'application/json', 'Authorization':('Bearer '+ api_key)}
+
+   req = urllib.request.Request(url, body, headers) 
+   req.method = "POST"
+
+   response = urllib.request.urlopen(req)
+   result = response.read()
+   result = json.loads(result) # Convert JSON byte stream into dictionary
+   prediction = result['Results']['output1']['value']['Values'][0]
+   data = {'matchbox_results':str(f'User: {prediction[0]}, 1.{prediction[1]}, 2.{prediction[2]}, 3.{prediction[3]}, 4.{prediction[4]} <- look up these IDs in the DB and display their product details instead of the ID number')}
+
+   return render(request, 'homepages/index.html', data) 
+
 def aboutPageView(request) :
-    sOutput = '<html><head><title>My Title</title></head><body><p style="color:red;"><b>one</b></p><p style="color:blue;">two</p><p style="font-size:50px;">three</p><ul><li>A</li><li>B</li><li>C</li></ul></body></html>'
-    return HttpResponse(sOutput)
+    return render(request, 'homepages/about.html')
     
