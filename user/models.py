@@ -1,14 +1,16 @@
 from django.db import models
 from company.models import Job
+from django.contrib.auth.models import User
 
 # Create your models here.
 
-class User(models.Model) :
+class User1(models.Model) :
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     email = models.CharField(max_length=30)
     phone = models.CharField(max_length=15)
-    jobs_offered = models.IntegerField()
+    jobs_offered = models.IntegerField(blank=True, null=True)
 
     def __str__(self) :
         return(self.first_name + ' ' + self.last_name)
@@ -31,7 +33,7 @@ class Job_Skills(models.Model) :
 
 
 class UserSkills(models.Model) :
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE) #FOREIGN KEY OR ManyToOneField?
+    user_id = models.ForeignKey(User1, on_delete=models.CASCADE) #FOREIGN KEY OR ManyToOneField?
     skill_id = models.ForeignKey(Skill, on_delete=models.CASCADE)
     skill_profciency = models.IntegerField()
 
@@ -39,7 +41,7 @@ class UserSkills(models.Model) :
         return(str(self.user_id) + '-' + str(self.skill_id))
 
 class AppliesFor(models.Model) :
-    user_id = models.OneToOneField(User, on_delete=models.CASCADE)
+    user_id = models.OneToOneField(User1, on_delete=models.CASCADE)
     job_id = models.OneToOneField(Job, on_delete=models.CASCADE)
     date_applied = models.DateField()
 
