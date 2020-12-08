@@ -1,10 +1,14 @@
 from django.shortcuts import render
 from django.http import request, HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+from .models import Job
 
 # Create your views here.
 
-def jobPageView(request) :
-    return render(request, 'company/job.html')
 
 def jobListPageView(request) :
-   return render(request, 'company/joblist.html')
+    data = Job.objects.all()
+    context = {
+        "jobs": data
+    }
+    return render(request, 'company/joblist.html', context)

@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+{% for data in job%}
+<p>{{data.job_name}}</p>
+<p>{{data.company_id}}</p>
+<p>{{data.job_description}}</p>
+<p>{{data.date_posted}}</p>
 {% endblock %}

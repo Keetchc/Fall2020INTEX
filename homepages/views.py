@@ -37,8 +37,17 @@ def azure_matchbox(request) :
    result = json.loads(result) # Convert JSON byte stream into dictionary
    prediction = result['Results']['output1']['value']['Values'][0]
    data = {'matchbox_results':str(f'User: {prediction[0]}, 1.{prediction[1]}, 2.{prediction[2]}, 3.{prediction[3]}, 4.{prediction[4]} <- look up these IDs in the DB and display their product details instead of the ID number')}
+   
+   context = {
+      "prediction1" : prediction[1],
+      "prediction2" : prediction[2],
+      "prediction3" : prediction[3],
+      "prediction4" : prediction[4],
+      "prediction5" : prediction[5],
+   }
+   
 
-   return render(request, 'homepages/index.html', data) 
+   return render(request, 'homepages/matchbox.html', context) 
 
 def aboutPageView(request) :
     return render(request, 'homepages/about.html')
