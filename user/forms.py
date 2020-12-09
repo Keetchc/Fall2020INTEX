@@ -5,8 +5,8 @@ from django import forms
 
 from .models import *
 
-class User1Form(ModelForm) :
+class ApplicantForm(ModelForm) :
     class Meta:
-        model = User1
+        model = Applicant
         fields = '__all__'
         exclude = ['user']

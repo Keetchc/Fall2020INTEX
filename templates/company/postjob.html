@@ -1,0 +1,47 @@
+{% extends 'companybase.html' %}
+{% load static %}
+{% block content %}
+       <!-- About Section-->
+       <section class="page-section bg-primary text-white mb-0" id="about" style="margin-top: 6rem;">
+        <div class="container">
+            <div class="container">
+                <!-- About Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-white">Post a Job:</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom divider-light">
+                    <div class="divider-custom-line"></div>
+                    <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                    <div class="divider-custom-line"></div>
+                </div>
+                <div class="col-lg-4 ml-auto"><p class="lead">Word Here.</p></div>
+                    <form method="post" action="{% url 'storeajob' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name='company_id' id='company_id' value='Adobe'> 
+                        <label for='job_name'>Enter the job name:</label>
+                        <input type="text" name='job_name' id='job_name'>
+                        <br><br>
+                        <label for='job_description'>Enter job description:</label>
+                        <input type="text" name='job_description' id='job_description'>           
+                        <br><br>     
+                        <label for='date_posted'>Choose the date posted:</label>
+                        <input type="date" name='date_posted' id='date_posted'>    
+                        <br><br>
+                        <label for='skill_name'>Enter Skills needed:</label>
+                        <select name='skill_name'>
+                            {% for skill in skills %}
+                            <option name='skill_name' value="{{skill}}">{{skill}}</option>
+                            {% endfor %}
+                        </select>                          
+                    
+                    <!-- About Section Button-->
+                        <div class="text-center mt-4">
+                            <button class="btn btn-xl btn-outline-light" type='submit'>Save Job</button> 
+                        </div>
+                    </form>
+            
+                </div>  
+            </div>
+        </div>    
+    </section>
+
+{% endblock %}

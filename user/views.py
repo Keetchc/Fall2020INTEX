@@ -11,14 +11,14 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 
 from .models import *
-from .forms import User1Form
+from .forms import ApplicantForm
 
 # Create your views here.
 
 @login_required(login_url='login')
 def profilePageView(request) :
     user = request.user
-    form = User1Form(instance=user)
+    form = ApplicantForm(instance=user)
     
     if request.method == 'POST' :
         form = User1Form(request.POST, instance=user)

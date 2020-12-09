@@ -1,7 +1,7 @@
-{% extends 'base.html' %}
+{% extends 'companybase.html' %}
 {% load static %}
 {% block content %}
-     <section class="page-section portfolio" id="portfolio" style="margin-bottom: 1rem; margin-top: 3rem;">
+     <section class="page-section portfolio" id="portfolio" style="margin-bottom: 1rem; margin-top: 6rem;">
         <div class="container">
             <!-- Portfolio Section Heading-->
             <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Available Candidates:</h2>
@@ -13,16 +13,14 @@
                 </div>
                 <div class="row justify-content-center">
                     <!--THIS NEEDS TO BE CHANGED TO RETURN A STRING OF USERS-->
-                    {% for job in jobs %}
+                    {% for applicant in applicants %}
                     <div class="col-md-6 col-lg-4 mb-5" style="box-shadow: 0 0 9px; padding: 1rem; margin: 2rem; background-color: #2c3e50; text-align: center;">
                         
                           
-                                <p style="font-size: 2.5rem; color: white;">{{job}}
+                                <p style="font-size: 2.5rem; color: white;">{{applicant.first_name}} {{applicant.last_name}}</p>
                                  <br>
-                                 <span style="font-size: 1.5rem; color: white;">{{job.company_id}}</span></p>
-                                 <p style="font-size: 1.25rem; color: white;">{{job.job_description}}</p>
-                                 <p style="font-size: 1.25rem; color: white;">{{job.date_posted}}</p>
-                        <button type='submit' style="font-size: 1.5rem; background-color: #1abc9c; border-radius: 20px; border-color: #1abc9c; padding: .5rem; color: white;">View Job Here</button>
+                                 <p style="font-size: 1.25rem; color: white;">{{applicant.email}}</p>
+                        <button type='submit' style="font-size: 1.5rem; background-color: #1abc9c; border-radius: 20px; border-color: #1abc9c; padding: .5rem; color: white;">View Applicant Here</button>
                     </div>        
             {% endfor %}
                 </div>
