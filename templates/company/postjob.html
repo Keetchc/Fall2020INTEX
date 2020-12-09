@@ -14,9 +14,9 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <div class="col-lg-4 ml-auto"><p class="lead">Word Here.</p></div>
-                    <form method="post" action="{% url 'storeajob' %}">
+                    <form method="POST" action="{% url 'storeajob' %}">
                         {% csrf_token %}
-                        <input type="hidden" name='company_id' id='company_id' value='Adobe'> 
+                        <input type="hidden" name='company_id' id='company_id' value={{request.user.company.id}}> 
                         <label for='job_name'>Enter the job name:</label>
                         <input type="text" name='job_name' id='job_name'>
                         <br><br>

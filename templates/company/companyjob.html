@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'companybase.html' %}
 {% load static %}
 {% block content %}
 <section class="page-section bg-primary text-white mb-0" id="about">
@@ -12,20 +12,20 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- About Section Content-->
-                  <form method='POST' action="{% url 'matchbox'%}">
+                  <form method='POST' action="{% url 'matchboxcompany'%}">
                   {% csrf_token %}
                    {% for data in job%}
                     <p>{{data.job_name}}</p>
                     <p>{{data.company_id}}</p>
                     <p>{{data.job_description}}</p>
                     <p>{{data.date_posted}}</p>
-                    <input hidden name='job_name' value='{{data.job_name}}'>
+                    <input maxlength='70' name='job_name' value="{{data.job_name}}">
                     {% endfor %}
                 <!-- About Section Button-->
                 <div class="text-center mt-4">
                     <button type='submit'>
                     <a class="btn btn-xl btn-outline-light">
-                        View Similar Jobs
+                        View Potential Candidates
                     </a>
                     </button>
                 </div>

@@ -15,6 +15,46 @@ def jobListPageView(request) :
     }
     return render(request, 'company/joblist.html', context)
 
+def companyJobListPageView(request) :
+    user = request.user
+    data = Job.objects.all()
+
+    context = {
+        "jobs" : data
+    }
+
+    return render(request, 'company/companyjobs.html', context)
+
+def companyJobPageView(request) :
+    if request.method == 'POST' :
+        applicable_job_name = request.POST.get('job_id')
+        
+
+
+        data = Job.objects.filter(id= applicable_job_name)
+
+        context = {
+            "job" : data
+        }
+
+    return render (request, 'company/companyjob.html', context)
+
+def jobPageView(request) :
+    if request.method == 'POST' :
+        applicable_job_id = request.POST.get('job_')
+        
+
+
+        data = Job.objects.filter(id = applicable_job_id)
+
+        context = {
+            "job" : data
+        }
+
+    return render (request, 'company/job.html', context)
+
+
+
 
 def viewApplicantsPageView(request) :
     data = Applicant.objects.all()
@@ -37,7 +77,7 @@ def storeAJobPageView(request):
 
         #Create a new employee object from the model (like a new record)
         new_job = Job(
-            company_id = Company.objects.get(company_name = request.POST.get('company_id')), 
+            company_id = Company.objects.get(id = request.POST.get('company_id')), 
             job_name = request.POST.get('job_name'),
             job_description = request.POST.get('job_description'),
             date_posted = request.POST.get('date_posted'),
@@ -54,4 +94,4 @@ def storeAJobPageView(request):
         new_job_skill.save()
                 
                 
-        return render(request, 'homepages/companyhome.html')   
+        return render(request, 'company/companyjobs.html')   
