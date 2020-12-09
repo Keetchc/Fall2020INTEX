@@ -1,9 +1,9 @@
-#this is a test comment
-
-.env
-.venv
-env/
+*.log
+*.pot
+*.pyc
+__pycache__/
+local_settings.py
+db.sqlite3
 venv/
-ENV/
-env.bak/
-venv.bak/
+
+
