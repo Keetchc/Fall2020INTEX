@@ -2,10 +2,10 @@
 {% load static %}
 {% block content %}
         <!-- About Section-->
-        <section class="page-section bg-primary text-white mb-0" id="about">
+        <section class="page-section bg-primary text-white mb-0" id="about" style="margin-top: 4rem;">
             <div class="container">
                 <!-- About Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
+                <h2 class="page-section-heading text-center text-uppercase text-white">About Us:</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
@@ -13,15 +13,18 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- About Section Content-->
-                <div class="row">
-                    <div class="col-lg-4 ml-auto"><p class="lead">Freelancer is a free bootstrap theme created by Start Bootstrap. The download includes the complete source files including HTML, CSS, and JavaScript as well as optional SASS stylesheets for easy customization.</p></div>
-                    <div class="col-lg-4 mr-auto"><p class="lead">You can create your own custom avatar for the masthead, change the icon in the dividers, and add your email address to the contact form to make it fully functional!</p></div>
+              
+                    <div class='container-sm' style="text-align: center;"><p class="lead"> Our organization is dedicated to promoting diversity and inclusion in America’s employment by connecting the Black community with employers who foster equal opportunity as part of their corporate policies. The BCR website hopes to provide a platform to connect Blacks to companies that are interested
+                        in increasing Black diversity in their workforce by addressing the three problems stated above.</p>
+                        <br>
+                        <br>
+                        <h2>We will help bridge the job inequality gap!</h2>
+                    </div>
                 </div>
                 <!-- About Section Button-->
                 <div class="text-center mt-4">
-                    <a class="btn btn-xl btn-outline-light" href="https://startbootstrap.com/theme/freelancer/">
-                        <i class="fas fa-download mr-2"></i>
-                        Free Download!
+                    <a class="btn btn-xl btn-outline-light" href="{% url 'emphome'%}">
+                        Back to Home
                     </a>
                 </div>
             </div>

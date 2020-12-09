@@ -10,3 +10,8 @@ class ApplicantForm(ModelForm) :
         model = Applicant
         fields = '__all__'
         exclude = ['user']
+
+class SkillsForm(ModelForm):
+    class Meta:
+        model= ApplicantSkills
+        fields = '__all__'

@@ -1,12 +1,46 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import request, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from .models import Job, Company
 from user.models import Applicant, Skill, Job_Skills, Skill
+from .models import *
+
 from django.contrib.auth.models import User
+from django.forms import inlineformset_factory
+from django.contrib.auth.forms import UserCreationForm
+
+from django.contrib.auth import authenticate, login, logout
+
+from django.contrib import messages
+
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
+
+
+from .forms import EmployerForm
+
 
 # Create your views here.
 
+@login_required(login_url='emplogin')
+def employerProfilePageView(request) :
+    user = request.user.company
+    form = EmployerForm(instance=user)
+    
+    if request.method == 'POST' :
+        form = EmployerForm(request.POST, instance=company)
+        if form.is_valid() :
+            form.save()
+
+
+
+    context = {
+        'form' : form
+    }
+    
+    
+
+    return render(request, 'company/companyprofile.html', context)
 
 def jobListPageView(request) :
     data = Job.objects.all()
@@ -16,8 +50,7 @@ def jobListPageView(request) :
     return render(request, 'company/joblist.html', context)
 
 def companyJobListPageView(request) :
-    user = request.user
-    data = Job.objects.all()
+    data = Job.objects.filter(company_id = request.user.company)
 
     context = {
         "jobs" : data
@@ -34,14 +67,28 @@ def companyJobPageView(request) :
         data = Job.objects.filter(id= applicable_job_name)
 
         context = {
-            "job" : data
+            "job" : data,
         }
 
     return render (request, 'company/companyjob.html', context)
 
+def applicantPageView(request) :
+    if request.method == 'POST' :
+        applicable_applicant = request.POST.get('applicant_email')
+        
+
+
+        data = Applicant.objects.filter(email= applicable_applicant)
+
+        context = {
+            "applicant" : data,
+        }
+
+    return render (request, 'company/applicant.html', context)
+
 def jobPageView(request) :
     if request.method == 'POST' :
-        applicable_job_id = request.POST.get('job_')
+        applicable_job_id = request.POST.get('job_id')
         
 
 
@@ -93,5 +140,10 @@ def storeAJobPageView(request):
         )
         new_job_skill.save()
                 
+    data = Job.objects.all()
+
+    context = {
+        "jobs" : data
+    }
                 
-        return render(request, 'company/companyjobs.html')   
+    return render(request, 'company/companyjobs.html', context)   

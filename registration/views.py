@@ -98,11 +98,26 @@ def registerEmployerPageView(request) :
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
+            city = form.cleaned_data.get('city')
+            address = form.cleaned_data.get('address')
+            zip_code = form.cleaned_data.get('zip_code')
+            state = form.cleaned_data.get('state')
+            country = form.cleaned_data.get('country')
             group = Group.objects.get(name='Employer')
             user.groups.add(group)
             Company.objects.create(
                 user=user,
+                company_name=username,
+                city=city,
+                address=address,
+                zip_code=zip_code,
+                state=state,
+                country=country,
+
+                
+
             )
+
             messages.success(request, 'Account was created for ' + username)
             return redirect('emplogin') #redirect to employerlogin page
 
