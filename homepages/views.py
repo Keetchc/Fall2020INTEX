@@ -8,6 +8,9 @@ import numpy as np
 def indexPageView(request) :
    return render(request, 'homepages/index.html')
 
+def employerPageView(request) :
+  return render(request, 'homepages/companyhome.html')
+
 def azure_matchbox(request) :
    import urllib
    data = {
@@ -92,4 +95,7 @@ def azure_matchbox_company(request) :
 
 def aboutPageView(request) :
     return render(request, 'homepages/about.html')
+
+def employerAboutPageView(request) :
+    return render(request, 'homepages/companyabout.html')
     
