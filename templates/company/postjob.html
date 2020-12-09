@@ -1,7 +1,7 @@
 {% extends 'companybase.html' %}
 {% load static %}
 {% block content %}
-       <!-- About Section-->
+     <!-- About Section-->
        <section class="page-section bg-primary text-white mb-0" id="about" style="margin-top: 6rem;">
         <div class="container">
             <div class="container">
@@ -13,7 +13,8 @@
                     <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
-                <div class="col-lg-4 ml-auto"><p class="lead">Word Here.</p></div>
+                <div class="container-sm"><p class="lead"><h3>Please provide the following information below to post a job:</h3></p></div>
+                    <br>
                     <form method="POST" action="{% url 'storeajob' %}">
                         {% csrf_token %}
                         <input type="hidden" name='company_id' id='company_id' value={{request.user.company.id}}> 
@@ -32,7 +33,6 @@
                             <option name='skill_name' value="{{skill}}">{{skill}}</option>
                             {% endfor %}
                         </select>                          
-                    
                     <!-- About Section Button-->
                         <div class="text-center mt-4">
                             <button class="btn btn-xl btn-outline-light" type='submit'>Save Job</button> 

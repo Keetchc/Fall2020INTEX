@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'homepages.apps.HomepagesConfig',
     'registration.apps.RegistrationConfig',
     'user.apps.UserConfig',
+    'crispy_forms',
 
 ]
 
@@ -78,13 +79,13 @@ WSGI_APPLICATION = 'BlackCyberRecruiter.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-from getpass import getpass
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'blackcyberrecruiter',
         'USER' : 'postgres',
-        'PASSWORD' : getpass(),
+        'PASSWORD' : 'camman17',
         'HOST' : 'localhost'
     }
 }
@@ -131,3 +132,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'BlackCyberRecruiter/static')
 ] 
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

@@ -1,37 +1,33 @@
-{% extends 'base.html' %}
+{% extends 'companybase.html' %}
 {% load static %}
 {% block content %}
 <section class="page-section bg-primary text-white mb-0" id="about" style="margin-top: 6rem;">
             <div class="container">
                 <!-- About Section Heading-->
-                {% for data in job %}
-                <h2 class="page-section-heading text-center text-uppercase text-white">{{data.job_name}}</h2>
+                {% for data in applicant %}
+                <h2 class="page-section-heading text-center text-uppercase text-white">{{data.first_name}} {{data.last_name}}</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
                     <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
                     <div class="divider-custom-line"></div>
                 </div>
-                <div style="text-align: center;">
                 <!-- About Section Content-->
-                  <form method='POST' action="{% url 'matchbox'%}">
-                  {% csrf_token %}
-                    <p>{{data.job_name}}</p>
-                    <p>{{data.company_id}}</p>
-                    <p>{{data.job_description}}</p>
-                    <p>{{data.date_posted}}</p>
-                    <input hidden name='job_name' value='{{data.job_name}}'>
-                {% endfor %}
+                <div style="text-align: center;">
+                    <h4>{{data.email}}</h4>
+                    <p>{{data.phone_number}}</p>
+                    {% endfor %}
                 </div>
                 <!-- About Section Button-->
                 <div class="text-center mt-4">
                     <button type='submit' style="background-color: #2c3e50; border-radius: 20px;">
-                    <a class="btn btn-xl btn-outline-light" style="background-color: #2c3e50; color: white; border-color: #2c3e50;">
-                        View Similar Jobs
+                    <a class="btn btn-xl btn-outline-light" style="background-color: #2c3e50; color: white; border-color: #2c3e50;" href="{% url 'applicantlist'%}">
+                        Return to Applicant Page
                     </a>
                     </button>
                 </div>
                 </form>
             </div>
         </section>
+
 {% endblock %}

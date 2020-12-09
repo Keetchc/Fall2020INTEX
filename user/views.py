@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import Group
 
 from .models import *
-from .forms import ApplicantForm
+from .forms import ApplicantForm, SkillsForm
 
 # Create your views here.
 
@@ -34,4 +34,34 @@ def profilePageView(request) :
     
 
     return render(request, 'user/profile.html', context)
+#This portion allows the user to view his/her skills
+def listSkills(request):
+    skills = ApplicantSkills.objects.filter(user_id = request.user.applicant)
+    return render(request, 'homepages/listskills.html', {'skills':skills})
+
+
+#This portion allows the user to select skills
+#def deleteSkills(request, pk):
+ #   skill = ApplicantSkills.objects.get(id=pk)
+  # context={
+   #     'skill':skill
+   # }
+    #return render(request, 'homepages/deleteskills.html', context)
+
+
+def successdelete(request):
+    if request.method == "POST":
+        skill = request.POST.get('skill_id')
+        skill.delete()
+        return redirect('profile')
+
+def deleteSkills(request, pk):
+    skill = ApplicantSkills.objects.get(id=pk)
+    if request.method == "POST":
+        skill.delete()
+        return redirect('profile')
+    context={
+    'skill':skill
+    }
+    return render(request, 'homepages/deleteskills.html', context)
 

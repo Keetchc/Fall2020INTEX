@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+<section class="page-section portfolio" id="portfolio">
+            <div class="container">
+                <!-- Portfolio Section Heading-->
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Are you sure you want to delete "{{skill}}"?</h2>
+                <!-- Icon Divider-->
+                <div class="divider-custom">
+                    <div class="divider-custom-line"></div>
+
+                    <div class="divider-custom-line"></div>
+                </div>
+                <!-- Portfolio Grid Items-->
+                <div class="row justify-content-center">
+<form action="{%url 'deleteskills' skill.id%}" method="POST">
+{% csrf_token %}
+<a style="color:blue" class="btn btn-xl btn-outline-light" href="{%url 'profile'%}">Cancel</a>
+<button style="color:red" class="btn btn-xl btn-outline-light" type="submit" name="Confirm">Confirm</button>
+</form>
+                </div>
+            </div>
+        </section>
+
+
+{% endblock %}

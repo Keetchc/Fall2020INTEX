@@ -1,10 +1,11 @@
 {% extends 'companybase.html' %}
 {% load static %}
 {% block content %}
-<section class="page-section bg-primary text-white mb-0" id="about">
+<section class="page-section bg-primary text-white mb-0" id="about" style="margin-top: 6rem;">
             <div class="container">
                 <!-- About Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
+                {% for data in job%}
+                <h2 class="page-section-heading text-center text-uppercase text-white">{{data.job_name}}</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-light">
                     <div class="divider-custom-line"></div>
@@ -12,19 +13,19 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- About Section Content-->
+                <div style="text-align: center;">
                   <form method='POST' action="{% url 'matchboxcompany'%}">
                   {% csrf_token %}
-                   {% for data in job%}
-                    <p>{{data.job_name}}</p>
-                    <p>{{data.company_id}}</p>
+                    <h4>{{data.company_id}}</h4>
                     <p>{{data.job_description}}</p>
                     <p>{{data.date_posted}}</p>
-                    <input maxlength='70' name='job_name' value="{{data.job_name}}">
+                    <input maxlength='70' hidden name='job_name' value="{{data.job_name}}">
                     {% endfor %}
+                </div>
                 <!-- About Section Button-->
                 <div class="text-center mt-4">
-                    <button type='submit'>
-                    <a class="btn btn-xl btn-outline-light">
+                    <button type='submit' style="background-color: #2c3e50; border-radius: 20px;">
+                    <a class="btn btn-xl btn-outline-light" style="background-color: #2c3e50; color: white; border-color: #2c3e50;">
                         View Potential Candidates
                     </a>
                     </button>
